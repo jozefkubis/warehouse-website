@@ -1,4 +1,6 @@
 import "@/app/_styles/globals.css"
+import Navigation from "@/app/_components/Navigation"
+import Logo from "@/app/_components/Logo"
 
 export const metadata = {
   title: {
@@ -13,9 +15,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <div>
-          <main>{children}</main>
-        </div>
+        <header>
+          <Logo />
+          <Navigation />
+        </header>
+
+        <main>{children}</main>
       </body>
     </html>
   )

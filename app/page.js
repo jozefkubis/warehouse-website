@@ -4,8 +4,6 @@ import Navigation from "@/app/_components/Navigation"
 function Page() {
   return (
     <div>
-      <Navigation />
-
       <h1 className="font-bold text-2xl">
         Welcome to the Main Next Warehouse Page
       </h1>
