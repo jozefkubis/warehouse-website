@@ -1,5 +1,9 @@
 import React from "react"
 
 export default function Account() {
-  return <div>Account</div>
+  return (
+    <div>
+      <h1>Account</h1>
+    </div>
+  )
 }

@@ -1,11 +1,16 @@
-import React from "react"
+import Link from "next/link"
+import Navigation from "@/app/_components/Navigation"
 
 function Page() {
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div>
+      <Navigation />
+
       <h1 className="font-bold text-2xl">
         Welcome to the Main Next Warehouse Page
       </h1>
+
+      <Link href="/products">Check our products</Link>
     </div>
   )
 }
