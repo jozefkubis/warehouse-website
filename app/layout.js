@@ -21,6 +21,7 @@ export default function RootLayout({ children }) {
         </header>
 
         <main>{children}</main>
+        <footer>Copyright by The Warehouse</footer>
       </body>
     </html>
   )
