@@ -4,11 +4,11 @@ import Logo from "@/app/_components/Logo"
 
 export const metadata = {
   title: {
-    default: "Welcome / Warehouse",
     template: "%s / Warehouse",
+    default: "Welcome / Warehouse",
   },
-  //   description:
-  //     "Luxurious cabin hotel, located in the heart of the Italian Dolomites, surrounded by beautiful mountains and dark forests.",
+  description:
+    "The Warehouse is a place where you can find all the products you need.",
 }
 
 export default function RootLayout({ children }) {
