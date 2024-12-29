@@ -1,7 +1,5 @@
+import Header from "@/app/_components/Header"
 import "@/app/_styles/globals.css"
-import Navigation from "@/app/_components/Navigation"
-import Logo from "@/app/_components/Logo"
-
 import { Noto_Sans } from "next/font/google"
 
 const notoSans = Noto_Sans({
@@ -26,13 +24,10 @@ export default function RootLayout({ children }) {
       <body
         className={`${notoSans.className} antialiased bg-primary-950 text-primary-100 min-h-screen flex flex-col relative`}
       >
-        <header>
-          <Logo />
-          <Navigation />
-        </header>
-
-        <main>{children}</main>
-        <footer>Copyright by The Warehouse</footer>
+        <Header />
+        <div className="flex-1 px-8 py-12">
+          <main className="max-w-7xl mx-auto w-full">{children}</main>
+        </div>
       </body>
     </html>
   )
