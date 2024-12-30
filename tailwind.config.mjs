@@ -21,6 +21,19 @@ const config = {
           900: "#1B2631",
           950: "#141C24",
         },
+        secondary: {
+          50: "#FFF3E0",
+          100: "#FFE0B2",
+          200: "#FFCC80",
+          300: "#FFB74D",
+          400: "#FFA726",
+          500: "#FF9800",
+          600: "#FB8C00",
+          700: "#F57C00",
+          800: "#EF6C00",
+          900: "#E65100",
+          950: "#DD2C00",
+        },
         accent: {
           50: "#FAF5F0",
           100: "#F4ECE1",
@@ -38,6 +51,6 @@ const config = {
     },
   },
   plugins: [],
-};
+}
 
-export default config;
+export default config
