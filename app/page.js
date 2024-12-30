@@ -9,7 +9,7 @@ function Page() {
 
       <div className="relative z-10 text-center">
         <h1 className="text-8xl text-primary-50 mb-10 tracking-tight font-normal">
-          Welcome to Warhouse
+          Warhouse shop
         </h1>
         <Link
           href="/products"
