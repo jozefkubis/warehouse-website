@@ -16,7 +16,7 @@ export default function Page() {
 
       {orders.length === 0 ? (
         <p className="text-lg">
-          You have no orders yet. Check out our{" "}
+          You have no orders yet. Check out &nbsp;
           <a className="underline text-accent-500" href="/products">
             our products &rarr;
           </a>
