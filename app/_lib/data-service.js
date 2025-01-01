@@ -1,5 +1,33 @@
 import { supabase } from "./supabase"
 
+export async function getWarehouseStore() {
+  const { data, error } = await supabase.from("WarehouseStore").select("*")
+
+  if (error) {
+    console.error(error)
+    throw new Error("Store could not be loaded")
+  }
+
+  return data
+}
+
+export async function getOrders() {
+  const { data, error } = await supabase
+    .from("orders")
+    .select(
+      "id, created_at, NoOfPcs,  status, notes, WarehouseStore(name, code, regularPrice, discount), customers(fullName, email, address)",
+      { count: "exact" }
+    )
+    .order("WarehouseStore(name)")
+
+  if (error) {
+    console.error(error)
+    throw new Error("Orders could not be loaded")
+  }
+
+  return data
+}
+
 export async function deleteOrder(id) {
   // REMEMBER RLS POLICIES
   const { data, error } = await supabase.from("orders").delete().eq("id", id)
