@@ -1,2 +1,3 @@
 npm i @heroicons/react
+npm install react-icons --save
 npm i date-fns
