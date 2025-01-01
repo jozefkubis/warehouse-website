@@ -1,3 +1,5 @@
+import { supabase } from "./supabase"
+
 export async function deleteOrder(id) {
   // REMEMBER RLS POLICIES
   const { data, error } = await supabase.from("orders").delete().eq("id", id)
