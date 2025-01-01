@@ -1,4 +1,4 @@
-import ReservationCard from "@/app/_components/OrderCard"
+import OrderCard from "@/app/_components/OrderCard"
 export const metadata = {
   title: "Orders",
 }
@@ -20,7 +20,7 @@ export default function Page() {
       ) : (
         <ul className="space-y-6">
           {orders.map((order) => (
-            <ReservationCard order={order} key={order.id} />
+            <OrderCard order={order} key={order.id} />
           ))}
         </ul>
       )}

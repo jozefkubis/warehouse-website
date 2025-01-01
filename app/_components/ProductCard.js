@@ -1,4 +1,4 @@
-import { UsersIcon } from "@heroicons/react/24/solid"
+import { CiBarcode } from "react-icons/ci";
 import Image from "next/image"
 import Link from "next/link"
 
@@ -23,7 +23,7 @@ function ProductCard({ product }) {
           </h3>
 
           <div className="flex gap-3 items-center mb-2">
-            <UsersIcon className="h-5 w-5 text-primary-600" />
+            <CiBarcode className="h-5 w-5 text-primary-600" />
             <p className="text-lg text-primary-200">
               <span className="font-bold">{code}</span>
             </p>
@@ -50,7 +50,7 @@ function ProductCard({ product }) {
             href={`/products/${id}`}
             className="border-l border-primary-800 py-4 px-6 inline-block hover:bg-accent-600 transition-all hover:text-primary-900"
           >
-            Details & reservation &rarr;
+            Order product &rarr;
           </Link>
         </div>
       </div>

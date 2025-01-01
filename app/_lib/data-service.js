@@ -1,7 +1,10 @@
 import { supabase } from "./supabase"
 
 export async function getWarehouseStore() {
-  const { data, error } = await supabase.from("WarehouseStore").select("*")
+  const { data, error } = await supabase
+    .from("WarehouseStore")
+    .select("id, created_at, name, code, regularPrice, discount, image")
+    .order("name")
 
   if (error) {
     console.error(error)
