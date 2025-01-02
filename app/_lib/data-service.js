@@ -14,6 +14,21 @@ export async function getWarehouseStore() {
   return data
 }
 
+export async function getProuct(id) {
+  const { data, error } = await supabase
+    .from("WarehouseStore")
+    .select("*")
+    .eq("id", id)
+    .single()
+
+  if (error) {
+    console.error(error)
+    notFound()
+  }
+
+  return data
+}
+
 export async function getOrders() {
   const { data, error } = await supabase
     .from("orders")

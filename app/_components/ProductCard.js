@@ -7,32 +7,42 @@ function ProductCard({ product }) {
 
   return (
     <div className="flex border-primary-800 border">
-      <div className="flex-1 relative">
+      <div className="w-48 h-48 overflow-hidden bg-gray-100">
+        <Image
+          src={image}
+          alt={`Product ${name}`}
+          className="object-cover"
+          width={192}
+          height={192}
+        />
+      </div>
+      {/* <div className="flex-1 relative ">
         <Image
           src={image}
           fill
           alt={`Product ${name}`}
           className="object-cover border-r border-primary-800"
         />
-      </div>
+      </div> */}
+
 
       <div className="flex-grow">
-        <div className="pt-5 pb-4 px-7 bg-primary-950">
-          <h3 className="text-accent-500 font-semibold text-2xl mb-3">
-            Product {name}
+        <div className="pt-5 pb-2 px-7 bg-primary-950">
+          <h3 className="text-accent-500 font-semibold text-xl mb-3">
+            {name}
           </h3>
 
           <div className="flex gap-3 items-center mb-2">
-            <CiBarcode className="h-5 w-5 text-primary-600" />
+            <CiBarcode className="h-7 w-7 text-primary-600" />
             <p className="text-lg text-primary-200">
-              <span className="font-bold">{code}</span>
+              Code:{" "}<span className="font-semibold">{code}</span>
             </p>
           </div>
 
           <p className="flex gap-3 justify-end items-baseline">
             {discount > 0 ? (
               <>
-                <span className="text-3xl font-[350]">
+                <span className="text-2xl font-[350]">
                   ${regularPrice - discount}
                 </span>
                 <span className="line-through font-semibold text-primary-600">
