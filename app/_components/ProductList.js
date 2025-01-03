@@ -4,6 +4,8 @@ import ProductCard from "@/app/_components/ProductCard"
 import { getWarehouseStore } from "@/app/_lib/data-service"
 
 async function ProductList() {
+  // noStore()
+
   const products = await getWarehouseStore()
 
   if (!products.length) return null

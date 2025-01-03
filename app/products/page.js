@@ -4,7 +4,7 @@ import Spinner from "../_components/Spinner"
 import { getWarehouseStore } from "../_lib/data-service"
 import ProductList from "../_components/ProductList"
 
-// export const revalidate = 3600 /* seconds */
+export const revalidate = 3600 /* seconds */
 
 export const metadata = {
   title: "Products",
