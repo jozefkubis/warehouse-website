@@ -14,7 +14,7 @@ export async function getWarehouseStore() {
   return data
 }
 
-export async function getProuct(id) {
+export async function getProduct(id) {
   const { data, error } = await supabase
     .from("WarehouseStore")
     .select("*")

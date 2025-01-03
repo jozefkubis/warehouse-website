@@ -1,11 +1,18 @@
-import { getProuct } from "@/app/_lib/data-service";
+import { getProduct } from "@/app/_lib/data-service";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { CiBarcode } from "react-icons/ci";
 import { HiOutlineBanknotes } from "react-icons/hi2";
 
+export async function generateMetadata({ params }) {
+    const { name } = await getProduct(params.productId)
+    return {
+        title: name,
+    }
+}
+
 export default async function Page({ params }) {
-    const product = await getProuct(params.productId);
+    const product = await getProduct(params.productId);
 
     const { id, name, code, regularPrice, discount, image, description } = product;
 

@@ -11,7 +11,7 @@ console.log(notoSans)
 
 export const metadata = {
   title: {
-    template: "%s / Warehouse",
+    template: "%s",
     default: "Welcome / Warehouse",
   },
   description:
