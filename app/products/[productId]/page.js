@@ -1,4 +1,4 @@
-import { getProduct } from "@/app/_lib/data-service";
+import { getProduct, getWarehouseStore } from "@/app/_lib/data-service";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { CiBarcode } from "react-icons/ci";
@@ -9,6 +9,12 @@ export async function generateMetadata({ params }) {
     return {
         title: name,
     }
+}
+
+export async function generateStaticParams() {
+    const products = await getWarehouseStore()
+    const ids = products.map((product) => ({ productId: String(product.id) }))
+    return ids
 }
 
 export default async function Page({ params }) {
