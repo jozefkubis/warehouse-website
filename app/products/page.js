@@ -12,7 +12,8 @@ export const metadata = {
 }
 
 export default function Page({ searchParams }) {
-  const filter = searchParams?.name ?? "all"
+  const filter = searchParams?.discount ?? "all"
+
 
   return (
     <div>
@@ -29,11 +30,12 @@ export default function Page({ searchParams }) {
       </p> */}
 
       <div className="flex justify-end mb-8">
+        <h4>Showing 6 out of 6 results</h4>
         <Filter />
       </div>
 
       <Suspense fallback={<Spinner />} key={filter}>
-        <ProductList />
+        <ProductList filter={filter} />
         {/* <ReservationReminder /> */}
       </Suspense>
     </div>

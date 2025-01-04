@@ -7,7 +7,6 @@ async function ProductList({ filter }) {
   // noStore()
 
   const products = await getWarehouseStore()
-  console.log(products.discount)
 
   if (!products.length) return null
 

@@ -7,13 +7,13 @@ function Filter() {
   const router = useRouter()
   const pathname = usePathname()
 
-  const activeFilter = searchParams.get("name") ?? "all"
+  const activeFilter = searchParams.get("discount") ?? "all"
 
   function handleFilter(filter) {
     // window.location.href = `/cabins?capacity=${filter}`
 
     const params = new URLSearchParams(searchParams)
-    params.set("name", filter)
+    params.set("discount", filter)
     router.replace(`${pathname}?${params.toString()}`, { scroll: false })
   }
 
@@ -47,9 +47,8 @@ function Filter() {
 function Button({ filter, handleFilter, activeFilter, children }) {
   return (
     <button
-      className={`px-5 py-2 hover:bg-primary-700 ${
-        activeFilter === filter ? "bg-primary-700 text-primary-50" : ""
-      }`}
+      className={`px-5 py-2 hover:bg-primary-700 ${activeFilter === filter ? "bg-primary-700 text-primary-50" : ""
+        }`}
       onClick={() => handleFilter(filter)}
     >
       {children}
