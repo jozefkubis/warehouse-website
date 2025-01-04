@@ -3,6 +3,7 @@ import Spinner from "../_components/Spinner"
 // import ReservationReminder from "@/app/_components/ReservationReminder"
 import { getWarehouseStore } from "../_lib/data-service"
 import ProductList from "../_components/ProductList"
+import Filter from "../_components/Filter"
 
 export const revalidate = 3600 /* seconds */
 
@@ -10,9 +11,8 @@ export const metadata = {
   title: "Products",
 }
 
-export default function Page() {
-  const products = getWarehouseStore()
-  console.log(products)
+export default function Page({ searchParams }) {
+  const filter = searchParams?.name ?? "all"
 
   return (
     <div>
@@ -28,11 +28,11 @@ export default function Page() {
         Welcome to paradise.
       </p> */}
 
-      {/* <div className="flex justify-end mb-8">
+      <div className="flex justify-end mb-8">
         <Filter />
-      </div> */}
+      </div>
 
-      <Suspense fallback={<Spinner />}>
+      <Suspense fallback={<Spinner />} key={filter}>
         <ProductList />
         {/* <ReservationReminder /> */}
       </Suspense>
