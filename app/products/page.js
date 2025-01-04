@@ -5,6 +5,7 @@ import { getWarehouseStore } from "../_lib/data-service"
 import ProductList from "../_components/ProductList"
 import Filter from "../_components/Filter"
 
+
 export const revalidate = 3600 /* seconds */
 
 export const metadata = {
@@ -13,7 +14,6 @@ export const metadata = {
 
 export default function Page({ searchParams }) {
   const filter = searchParams?.discount ?? "all"
-
 
   return (
     <div>
@@ -30,7 +30,7 @@ export default function Page({ searchParams }) {
       </p> */}
 
       <div className="flex justify-end mb-8">
-        <h4>Showing 6 out of 6 results</h4>
+        <h4>Showing out 6 of 6 results</h4>
         <Filter />
       </div>
 
