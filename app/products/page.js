@@ -30,7 +30,6 @@ export default function Page({ searchParams }) {
       </p> */}
 
       <div className="flex justify-end mb-8">
-        <h4>Showing out 6 of 6 results</h4>
         <Filter />
       </div>
 
