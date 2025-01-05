@@ -13,7 +13,9 @@ async function ProductList({ filter }) {
   return (
     <div>
       <div className="flex justify-end items-center mb-8 text-lg">
-        <h4>Showing {displayedProducts.length} out of {products.length} results</h4>
+        <h4>
+          Showing {displayedProducts.length} out of {products.length} results
+        </h4>
       </div>
       <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-14">
         {displayedProducts.map((product) => (
