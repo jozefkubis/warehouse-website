@@ -1,14 +1,10 @@
-import { unstable_noStore as noStore } from "next/cache"
-
 import ProductCard from "@/app/_components/ProductCard"
 import { getWarehouseStore } from "@/app/_lib/data-service"
 import DisplayedProducts from "@/app/_components/DisplayedProducts"
 
-async function ProductList({ filter }) {
-  // noStore()
-
+async function ProductList({ filter, searchTerm }) {
   const products = await getWarehouseStore()
-  const displayedProducts = await DisplayedProducts({ filter })
+  const displayedProducts = await DisplayedProducts({ filter, searchTerm })
 
   return (
     <div>

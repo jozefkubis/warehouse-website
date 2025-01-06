@@ -2,14 +2,14 @@
 
 import { useState } from "react"
 
-export default function SearchBar({ searchProducts }) {
+export default function SearchBar() {
   const [searchingProduct, setSearchingProduct] = useState("")
   const [filteredProducts, setFilteredProducts] = useState([])
 
   function handleSubmit(e) {
     e.preventDefault()
 
-    const productsAfterFilter = searchProducts.filter(
+    const productsAfterFilter = displayedProducts.filter(
       (product) =>
         product.name.toLowerCase().includes(searchingProduct.toLowerCase()) ||
         product.code.toString().includes(searchingProduct.toLowerCase()) ||
