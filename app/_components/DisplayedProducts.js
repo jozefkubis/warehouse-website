@@ -1,6 +1,9 @@
 import { getWarehouseStore } from "../_lib/data-service";
 
 async function DisplayedProducts({ filter, searchTerm }) {
+  console.log(filter);
+  console.log("searchTerm:", searchTerm);
+
 
   try {
     const products = await getWarehouseStore();
@@ -16,9 +19,9 @@ async function DisplayedProducts({ filter, searchTerm }) {
     } else if (filter === searchTerm) {
       displayedProducts = products.filter(
         (product) =>
-          product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          product.code.toString().includes(searchTerm.toLowerCase()) ||
-          product.regularPrice.toString().includes(searchTerm.toLowerCase())
+          product.name.toLowerCase().includes(filter.toLowerCase()) ||
+          product.code.toString().includes(filter.toLowerCase()) ||
+          product.regularPrice.toString().includes(filter.toLowerCase())
       );
     } else {
       displayedProducts = [];

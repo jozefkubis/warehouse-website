@@ -12,7 +12,10 @@ export const metadata = {
 export default async function Page({ searchParams }) {
 
   const filter = searchParams?.discount ?? "all";
-  const searchTerm = searchParams?.search ?? "";
+  const searchTerm = searchParams?.discount ?? "";
+  console.log(filter);
+
+
 
   return (
     <div>

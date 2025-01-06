@@ -15,6 +15,7 @@ function Filter() {
     const params = new URLSearchParams(searchParams);
     params.set("discount", filter);
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    console.log(filter);
   }
 
   function handleSubmit(e) {
@@ -24,6 +25,9 @@ function Filter() {
     params.set("discount", searchTerm);
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   }
+
+
+
 
   return (
     <div className="flex">
@@ -44,14 +48,13 @@ function Filter() {
         </Button>
       </div>
       <div >
-        <form onSubmit={handleSubmit} className="" >
+        <form onSubmit={handleSubmit} className="" filter="search">
           <input
             className="px-5 py-2 bg-primary-700 text-primary-50 ml-6 border border-primary-800 outline-none"
             placeholder="Search..."
             type="search"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            filter={searchTerm}
           />
         </form>
       </div>
