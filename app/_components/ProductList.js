@@ -2,9 +2,9 @@ import ProductCard from "@/app/_components/ProductCard"
 import { getWarehouseStore } from "@/app/_lib/data-service"
 import DisplayedProducts from "@/app/_components/DisplayedProducts"
 
-async function ProductList({ filter, searchTerm }) {
+async function ProductList({ filter }) {
   const products = await getWarehouseStore()
-  const displayedProducts = await DisplayedProducts({ filter, searchTerm })
+  const displayedProducts = await DisplayedProducts({ filter })
 
   return (
     <div>
