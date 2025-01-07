@@ -1,3 +1,4 @@
+import Count from "@/app/_components/Count"
 import TextExpander from "@/app/_components/TextExpander"
 import { getProduct, getWarehouseStore } from "@/app/_lib/data-service"
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid"
@@ -69,6 +70,9 @@ export default async function Page({ params }) {
               <span className="text-lg">
                 Code: <span className="font-bold">{code}</span>
               </span>
+            </li>
+            <li>
+              <Count />
             </li>
           </ul>
         </div>
