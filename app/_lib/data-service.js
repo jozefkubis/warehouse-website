@@ -47,6 +47,21 @@ export async function getOrders() {
   return data
 }
 
+export async function getOrder(id) {
+  const { data, error } = await supabase
+    .from("orders")
+    .select("*, WarehouseStore(*), customers(*)")
+    .eq("id", id)
+    .single()
+
+  if (error) {
+    console.error(error)
+    throw new Error("Order not found")
+  }
+
+  return data
+}
+
 export async function deleteOrder(id) {
   // REMEMBER RLS POLICIES
   const { data, error } = await supabase.from("orders").delete().eq("id", id)
