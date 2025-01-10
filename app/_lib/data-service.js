@@ -82,3 +82,25 @@ export async function getCountries() {
     throw new Error("Could not fetch countries")
   }
 }
+
+export async function getCustomer(email) {
+  const { data, error } = await supabase
+    .from("customers")
+    .select("*")
+    .eq("email", email)
+    .single()
+
+  // Zidany error, riesist ho budeme v sign in callback
+  return data
+}
+
+export async function createCustomer(newCustomer) {
+  const { data, error } = await supabase.from("customers").insert([newCustomer])
+
+  if (error) {
+    console.error(error)
+    throw new Error("Customer could not be created")
+  }
+
+  return data
+}
