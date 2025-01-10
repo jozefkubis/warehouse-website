@@ -6,6 +6,6 @@ export async function signInAction() {
     await signIn("google", { redirectTo: "/account" })
 }
 
-// export async function signOutAction() {
-//     await signOut("google", { redirectTo: "/" })
-// }
+export async function signOutAction() {
+    await signOut("google", { redirectTo: "/" })
+}
