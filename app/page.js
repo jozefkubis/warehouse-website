@@ -2,14 +2,15 @@ import Link from "next/link"
 import MultiCarousel from "./_components/MultiCarousel"
 import { getWarehouseStore } from "./_lib/data-service"
 import Image from "next/image"
+import CarouselCard from "./_components/CarouselCard"
 // import bg from "../public/bg.png"
 
 async function Page() {
   const products = await getWarehouseStore()
 
-  const displayedImages = products.map((product) => product.image)
-
-
+  const displayedImages = products.map((product) =>
+    <CarouselCard product={product} key={product.id} />
+  )
 
   return (
     <div className="flex flex-col items-center">
@@ -28,9 +29,9 @@ async function Page() {
           </Link>
         </div>
       </main>
-      <div className="mt-20 w-2/3">
-        <MultiCarousel autoSlide={true} autoSlideInterval={3000}>
-          {displayedImages.map((image, index) => <Image src={image} key={image} alt={`Image ${index}`} height={200} width={200} />)}
+      <div className="mt-20 w-3/4">
+        <MultiCarousel autoSlide={false} autoSlideInterval={3000}>
+          {displayedImages}
         </MultiCarousel>
       </div>
     </div>
