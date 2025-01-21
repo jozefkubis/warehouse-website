@@ -23,8 +23,22 @@ function UpdateProfileForm({ children }) {
         <label>Email address</label>
         <input
           disabled
-          className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
+          className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm  disabled:bg-gray-600 disabled:text-gray-400"
         />
+      </div>
+      <div className="space-y-2">
+        <label>Address</label>
+        <textarea className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400" />
+      </div>
+
+      {/* <div className="space-y-2">
+        <label>Street</label>
+        <input className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400" />
+      </div>
+
+      <div className="space-y-2">
+        <label>Postcode</label>
+        <input className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400" />
       </div>
 
       <div className="space-y-2">
@@ -37,7 +51,7 @@ function UpdateProfileForm({ children }) {
           />
         </div>
         {children}
-      </div>
+      </div> */}
 
       {/* <div className="space-y-2">
         <label htmlFor="nationalID">National ID number</label>
