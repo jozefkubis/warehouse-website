@@ -12,12 +12,13 @@ export const formatDistanceFromNow = (dateStr) =>
 function OrderCard({ order }) {
   const {
     id,
-    storeId,
     created_at,
-    isPaid,
     NoOfPcs,
-    WarehouseStore: { name, image, code, regularPrice, discount, description },
+    status,
+    WarehouseStore: { name, image, regularPrice, discount, },
   } = order
+
+  const totalPrice = (regularPrice - discount) * NoOfPcs
 
   return (
     <div className="flex border border-primary-800">
@@ -36,24 +37,30 @@ function OrderCard({ order }) {
             {NoOfPcs}{" "}x{" "}
             {name}
           </h3>
+          <p className="space-x-2"><span className="italic">Total price</span><span className="text-xl">${totalPrice}</span></p>
         </div>
 
         <div className="flex gap-5 mt-auto items-baseline">
-          <p className="ml-auto text-sm text-primary-400">
+          <p className="ml-auto text-sm text-primary-400 italic">
             Ordered {format(new Date(created_at), "EEE, MMM dd yyyy, p")}
           </p>
+          <span>{status}</span>
         </div>
       </div>
 
       <div className="flex flex-col border-l border-primary-800 w-[100px]">
-        <Link
-          href={`/account/reservations/edit/${id}`}
-          className="group flex items-center gap-2 uppercase text-xs font-bold text-primary-300 border-b border-primary-800 flex-grow px-3 hover:bg-accent-600 transition-colors hover:text-primary-900"
-        >
-          <PencilSquareIcon className="h-5 w-5 text-primary-600 group-hover:text-primary-800 transition-colors" />
-          <span className="mt-1">Edit</span>
-        </Link>
-        <DeleteOrder orderId={id} />
+        {status === "processing" || status === "checked-in" ?
+          <>
+            <Link
+              href={`/account/reservations/edit/${id}`}
+              className="group flex items-center gap-2 uppercase text-xs font-bold text-primary-300 border-b border-primary-800 flex-grow px-3 hover:bg-accent-600 transition-colors hover:text-primary-900"
+            >
+              <PencilSquareIcon className="h-5 w-5 text-primary-600 group-hover:text-primary-800 transition-colors" />
+              <span className="mt-1">Edit</span>
+            </Link>
+            <DeleteOrder orderId={id} />
+          </>
+          : null}
       </div>
     </div>
   )
