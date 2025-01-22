@@ -30,13 +30,14 @@ export async function getProduct(id) {
   return data
 }
 
-export async function getOrders() {
+export async function getOrders(customerId) {
   const { data, error } = await supabase
     .from("orders")
     .select(
-      "id, created_at, NoOfPcs,  status, notes, WarehouseStore(name, code, regularPrice, discount), customers(fullName, email, address)",
+      "id, created_at, NoOfPcs,  status, notes, WarehouseStore(name, code, regularPrice, discount, image), customers(fullName, email, address)",
       { count: "exact" }
     )
+    .eq("customerId", customerId)
     .order("WarehouseStore(name)")
 
   if (error) {
