@@ -20,6 +20,16 @@ function OrderCard({ order }) {
 
   const totalPrice = (regularPrice - discount) * NoOfPcs
 
+  // status === "processing" || status === "checked-in" ? (
+  //   <span className="bg-primary-600 text-white px-2 py-1 text-xs">
+  //     {status}
+  //   </span>
+  // ) : (
+  //   <span className="bg-primary-600 text-white px-2 py-1 text-xs">
+  //     {status}
+  //   </span>
+  // )
+
   return (
     <div className="flex border border-primary-800">
       <div className="relative h-32 aspect-square">
@@ -37,14 +47,22 @@ function OrderCard({ order }) {
             {NoOfPcs}{" "}x{" "}
             {name}
           </h3>
-          <p className="space-x-2"><span className="italic">Total price</span><span className="text-xl">${totalPrice}</span></p>
+          <p className="space-x-2"><span className="italic">Total price</span><span className="text-xl">${" "}{totalPrice}</span></p>
         </div>
 
         <div className="flex gap-5 mt-auto items-baseline">
           <p className="ml-auto text-sm text-primary-400 italic">
             Ordered {format(new Date(created_at), "EEE, MMM dd yyyy, p")}
           </p>
-          <span>{status}</span>
+          {status === "processing" || status === "checked-in" ? (
+            <span className="bg-green-600 text-white px-2 py-1 text-xs rounded-md">
+              {status}
+            </span>
+          ) : (
+            <span className="bg-primary-600 text-white px-2 py-1 text-xs rounded-md">
+              {status}
+            </span>
+          )}
         </div>
       </div>
 

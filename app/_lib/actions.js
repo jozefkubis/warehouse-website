@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { auth, signIn, signOut } from "./auth"
 import { supabase } from "./supabase";
+import { getOrders } from "./data-service";
 
 export async function updateCustomer(formData) {
     const session = await auth()
@@ -21,6 +22,23 @@ export async function updateCustomer(formData) {
     if (error) throw new Error("Profile could not be updated")
 
     revalidatePath("/account/profile")
+}
+
+export async function deleteOrder(orderId) {
+    const session = await auth()
+    if (!session) throw new Error("You must be logged in.")
+
+    const customerOrders = await getOrders(session.user.customerId)
+    const customerOrderIds = customerOrders.map((order) => order.id)
+
+    if (!customerOrderIds.includes(orderId))
+        throw new Error("You cannot delete this booking.")
+
+    const { error } = await supabase.from("orders").delete().eq("id", orderId)
+
+    if (error) throw new Error("Order could not be deleted")
+
+    revalidatePath("/account/orders")
 }
 
 
