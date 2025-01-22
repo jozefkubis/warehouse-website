@@ -1,19 +1,22 @@
-"use client"
 
-import { useState } from "react"
+import { updateCustomer } from "../_lib/actions"
+import SubmitButton from "./SubmitButton"
+import { auth } from "@/app/_lib/auth"
+import { getCustomer } from "@/app/_lib/data-service"
 
-function UpdateProfileForm({ children }) {
-  const [count, setCount] = useState()
+async function UpdateProfileForm() {
+  const session = await auth()
+  const customer = await getCustomer(session.user.email)
 
-  // CHANGE
-  const countryFlag = "pt.jpg"
-  const nationality = "portugal"
+  const { fullName, email, address } = customer
 
   return (
-    <form className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
+    <form action={updateCustomer} className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
       <div className="space-y-2">
         <label>Full name</label>
         <input
+          defaultValue={fullName}
+          name="fullName"
           disabled
           className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
         />
@@ -22,49 +25,25 @@ function UpdateProfileForm({ children }) {
       <div className="space-y-2">
         <label>Email address</label>
         <input
+          defaultValue={email}
+          name="email"
           disabled
           className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm  disabled:bg-gray-600 disabled:text-gray-400"
         />
       </div>
       <div className="space-y-2">
         <label>Address</label>
-        <textarea className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400" />
-      </div>
-
-      {/* <div className="space-y-2">
-        <label>Street</label>
-        <input className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400" />
-      </div>
-
-      <div className="space-y-2">
-        <label>Postcode</label>
-        <input className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400" />
-      </div>
-
-      <div className="space-y-2">
-        <div className="flex items-center justify-between">
-          <label htmlFor="nationality">Country</label>
-          <img
-            src={countryFlag}
-            alt="Country flag"
-            className="h-5 rounded-sm"
-          />
-        </div>
-        {children}
-      </div> */}
-
-      {/* <div className="space-y-2">
-        <label htmlFor="nationalID">National ID number</label>
-        <input
-          name="nationalID"
+        <textarea
+          defaultValue={address || ""}
+          name="address"
           className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
         />
-      </div> */}
+      </div>
+
+
 
       <div className="flex justify-end items-center gap-6">
-        <button className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
-          Update profile
-        </button>
+        <SubmitButton pendingLabel="Updating..." type="Updating...">Update profile</SubmitButton>
       </div>
     </form>
   )

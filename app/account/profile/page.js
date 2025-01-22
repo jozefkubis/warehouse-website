@@ -1,14 +1,10 @@
 import UpdateProfileForm from "@/app/_components/UpdateProfileForm"
-import { auth } from "@/app/_lib/auth"
-import { getCustomer } from "@/app/_lib/data-service"
 
 export const metadata = {
   title: "Update profile",
 }
 
-export default async function Page() {
-  // const session = await auth()
-  // const customer = getCustomer(session.user.email)
+export default function Page() {
 
   return (
     <div>

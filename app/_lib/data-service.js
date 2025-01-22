@@ -73,15 +73,6 @@ export async function deleteOrder(id) {
   return data
 }
 
-export async function getCountries() {
-  try {
-    const res = await fetch("https://restcountries.com/v2/all?fields=name,flag")
-    const countries = await res.json()
-    return countries
-  } catch {
-    throw new Error("Could not fetch countries")
-  }
-}
 
 export async function getCustomer(email) {
   const { data, error } = await supabase
@@ -90,7 +81,6 @@ export async function getCustomer(email) {
     .eq("email", email)
     .single()
 
-  // Zidany error, riesist ho budeme v sign in callback
   return data
 }
 
