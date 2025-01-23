@@ -1,9 +1,8 @@
 "use client"
 
-import { TrashIcon } from "@heroicons/react/24/solid"
-import { deleteOrder } from "../_lib/actions"
+import { TrashIcon } from "@heroicons/react/24/solid";
 import { useTransition } from 'react';
-import Spinner from './Spinner';
+import { deleteOrder } from "../_lib/actions";
 import SpinnerMini from './SpinnerMini';
 
 function DeleteOrder({ orderId }) {

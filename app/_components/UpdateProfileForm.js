@@ -1,12 +1,11 @@
+"use client"
 
 import { updateCustomer } from "../_lib/actions"
 import SubmitButton from "./SubmitButton"
-import { auth } from "@/app/_lib/auth"
-import { getCustomer } from "@/app/_lib/data-service"
 
-async function UpdateProfileForm() {
-  const session = await auth()
-  const customer = await getCustomer(session.user.email)
+
+function UpdateProfileForm({ customer }) {
+
 
   const { fullName, email, address } = customer
 

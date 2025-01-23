@@ -1,10 +1,14 @@
 import UpdateProfileForm from "@/app/_components/UpdateProfileForm"
+import { auth } from "@/app/_lib/auth"
+import { getCustomer } from "@/app/_lib/data-service"
 
 export const metadata = {
   title: "Update profile",
 }
 
-export default function Page() {
+export default async function Page() {
+  const session = await auth()
+  const customer = await getCustomer(session.user.email)
 
   return (
     <div>
@@ -17,7 +21,7 @@ export default function Page() {
         faster and smoother.h
       </p>
 
-      <UpdateProfileForm />
+      <UpdateProfileForm customer={customer} />
     </div>
   )
 }

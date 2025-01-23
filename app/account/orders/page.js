@@ -2,6 +2,7 @@ import OrderCard from "@/app/_components/OrderCard"
 import { auth } from "@/app/_lib/auth"
 import { getOrders } from "@/app/_lib/data-service"
 import Link from "next/link"
+
 export const metadata = {
   title: "Orders",
 }
@@ -9,7 +10,6 @@ export default async function Page() {
 
   const session = await auth()
   const orders = await getOrders(session.user.customerId)
-
 
   return (
     <div>

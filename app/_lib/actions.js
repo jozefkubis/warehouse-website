@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { auth, signIn, signOut } from "./auth"
 import { supabase } from "./supabase";
 import { getOrders } from "./data-service";
+import { redirect } from "next/navigation";
 
 export async function updateCustomer(formData) {
     const session = await auth()
@@ -40,6 +41,47 @@ export async function deleteOrder(orderId) {
 
     revalidatePath("/account/orders")
 }
+
+//...........................................................................
+
+export async function updateOrder(formData) {
+    // 1) Authentication
+    const session = await auth()
+    if (!session)
+        throw new Error("You must be logged in to update your reservation.")
+
+    // 2) Authorization
+    const orderId = Number(formData.get("orderId"))
+    const customerOrders = await getOrders(session.user.customerId)
+    const customerOrderIds = customerOrders.map((order) => order.id)
+
+    if (!customerOrderIds.includes(orderId))
+        throw new Error("You cannot update this order.")
+
+    // 3) Update data building
+    const updateData = {
+        NoOfPcs: Number(formData.get("NoOfPcs")),
+        notes: formData.get("notes").slice(0, 500),
+    }
+
+    // 4) Mutation
+    const { error } = await supabase
+        .from("orders")
+        .update(updateData)
+        .eq("id", orderId)
+
+    // 5) Error handling
+    if (error) throw new Error("Order could not be updated")
+
+    // 5) Revalidation
+    revalidatePath(`/account/orders/edit/${orderId}`)
+    revalidatePath("/account/orders")
+
+    // 7) Redirecting
+    redirect("/account/orders")
+}
+
+//...........................................................................
 
 
 export async function signInAction() {
