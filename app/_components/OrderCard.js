@@ -10,7 +10,7 @@ export const formatDistanceFromNow = (dateStr) =>
     addSuffix: true,
   }).replace("about ", "")
 
-function OrderCard({ order }) {
+function OrderCard({ order, onDelete }) {
   const {
     id,
     created_at,
@@ -68,7 +68,7 @@ function OrderCard({ order }) {
               <PencilSquareIcon className="h-5 w-5 text-primary-600 group-hover:text-primary-800 transition-colors" />
               <span className="mt-1">Edit</span>
             </Link>
-            <DeleteOrder orderId={id} />
+            <DeleteOrder orderId={id} onDelete={onDelete} />
           </>
           : null}
       </div>

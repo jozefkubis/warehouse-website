@@ -2,15 +2,14 @@
 
 import { TrashIcon } from "@heroicons/react/24/solid";
 import { useTransition } from 'react';
-import { deleteOrder } from "../_lib/actions";
 import SpinnerMini from './SpinnerMini';
 
-function DeleteOrder({ orderId }) {
+function DeleteOrder({ orderId, onDelete }) {
 
   const [isPending, startTransition] = useTransition()
   function handleDelete() {
     if (confirm("Are you sure you want to delete this order?"))
-      startTransition(() => deleteOrder(orderId))
+      startTransition(() => onDelete(orderId))
   }
 
   return (

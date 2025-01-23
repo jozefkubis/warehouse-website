@@ -1,4 +1,4 @@
-import OrderCard from "@/app/_components/OrderCard"
+import OrderList from "@/app/_components/OrderList"
 import { auth } from "@/app/_lib/auth"
 import { getOrders } from "@/app/_lib/data-service"
 import Link from "next/link"
@@ -24,11 +24,7 @@ export default async function Page() {
           </Link>
         </p>
       ) : (
-        <ul className="space-y-6">
-          {orders.map((order) => (
-            <OrderCard order={order} key={order.id} />
-          ))}
-        </ul>
+        <OrderList orders={orders} />
       )}
     </div>
   )
