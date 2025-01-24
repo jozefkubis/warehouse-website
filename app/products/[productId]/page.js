@@ -1,7 +1,12 @@
-import Count from "@/app/_components/Count"
+import OrderForm from "@/app/_components/OrderForm"
 import TextExpander from "@/app/_components/TextExpander"
-import { getProduct, getWarehouseStore } from "@/app/_lib/data-service"
-import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid"
+import {
+  getOrder,
+  getOrders,
+  getProduct,
+  getSettings,
+  getWarehouseStore,
+} from "@/app/_lib/data-service"
 import Image from "next/image"
 import { CiBarcode } from "react-icons/ci"
 import { HiOutlineBanknotes } from "react-icons/hi2"
@@ -21,6 +26,7 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }) {
   const product = await getProduct(params.productId)
+  const { maxPcsToOrder } = await getSettings()
 
   const { id, name, code, regularPrice, discount, image, description } = product
 
@@ -72,7 +78,7 @@ export default async function Page({ params }) {
               </span>
             </li>
             <li>
-              <Count />
+              <OrderForm maxPcsToOrder={maxPcsToOrder} products={product} />
             </li>
           </ul>
         </div>

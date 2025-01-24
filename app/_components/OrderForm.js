@@ -1,30 +1,31 @@
-import SubmitButton from "@/app/_components/SubmitButton"
-import { updateOrder } from "@/app/_lib/actions"
-import { getOrder, getSettings } from "@/app/_lib/data-service"
-import { max } from "date-fns"
+"use client"
 
-export default async function Page({ params }) {
-  const { orderId } = params
-  const { NoOfPcs, notes } = await getOrder(orderId)
-  const { maxPcsToOrder } = await getSettings()
+import { createOrder } from "../_lib/actions"
+import SubmitButton from "./SubmitButton"
+
+export default function OrderForm({ maxPcsToOrder, products, user }) {
+  const { id, regularPrice, discount } = products
+
+  const NoOfPcs = maxPcsToOrder
+
+  const productPrice = (regularPrice - discount) * NoOfPcs
+
+  const orderData = { NoOfPcs, storeId: id }
+
+  const createOrderWithData = createOrder.bind(null, orderData)
 
   return (
     <div>
-      <h2 className="font-semibold text-2xl text-accent-400 mb-7">
-        Edit Order #{orderId}
-      </h2>
-
       <form
-        action={updateOrder}
+        action={createOrderWithData}
         className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
       >
-        <input type="hidden" name="orderId" value={orderId} />
+        {/* <input type="hidden" name="orderId" value={orderId} /> */}
 
         <div className="space-y-2">
           <label htmlFor="NoOfPcs">How many items?</label>
           <select
             name="NoOfPcs"
-            defaultValue={NoOfPcs}
             id="NoOfPcs"
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
             required
@@ -46,13 +47,14 @@ export default async function Page({ params }) {
           </label>
           <textarea
             name="notes"
-            defaultValue={notes}
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
           />
         </div>
 
         <div className="flex justify-end items-center gap-6">
-          <SubmitButton pendingLabel="Updating...">Update order</SubmitButton>
+          <SubmitButton pendingLabel="Creating order...">
+            Create order
+          </SubmitButton>
         </div>
       </form>
     </div>
