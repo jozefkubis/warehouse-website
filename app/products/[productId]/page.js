@@ -28,7 +28,9 @@ export default async function Page({ params }) {
   const product = await getProduct(params.productId)
   const { maxPcsToOrder } = await getSettings()
 
-  const { id, name, code, regularPrice, discount, image, description } = product
+
+  const { id, name, code, regularPrice, discount, image, description, } = product
+
 
   return (
     <div className="max-w-6xl mx-auto mt-8">
@@ -78,7 +80,7 @@ export default async function Page({ params }) {
               </span>
             </li>
             <li>
-              <OrderForm maxPcsToOrder={maxPcsToOrder} products={product} />
+              <OrderForm maxPcsToOrder={maxPcsToOrder} product={product} />
             </li>
           </ul>
         </div>

@@ -1,7 +1,6 @@
 import SubmitButton from "@/app/_components/SubmitButton"
 import { updateOrder } from "@/app/_lib/actions"
 import { getOrder, getSettings } from "@/app/_lib/data-service"
-import { max } from "date-fns"
 
 export default async function Page({ params }) {
   const { orderId } = params
