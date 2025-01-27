@@ -1,8 +1,6 @@
 import OrderForm from "@/app/_components/OrderForm"
 import TextExpander from "@/app/_components/TextExpander"
 import {
-  getOrder,
-  getOrders,
   getProduct,
   getSettings,
   getWarehouseStore,
@@ -28,9 +26,7 @@ export default async function Page({ params }) {
   const product = await getProduct(params.productId)
   const { maxPcsToOrder } = await getSettings()
 
-
-  const { id, name, code, regularPrice, discount, image, description, } = product
-
+  const { id, name, code, regularPrice, discount, image, description } = product
 
   return (
     <div className="max-w-6xl mx-auto mt-8">

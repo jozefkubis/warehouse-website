@@ -1,6 +1,8 @@
 import NextAuth from "next-auth"
 import Google from "next-auth/providers/google"
-import { createCustomer, getCustomer } from "./data-service";
+import { createCustomer, getCustomer } from "./data-service"
+
+const revalidate = 3600
 
 const authConfig = {
   providers: [
@@ -17,7 +19,8 @@ const authConfig = {
       try {
         const existingCustomer = await getCustomer(user.email)
 
-        if (!existingCustomer) await createCustomer({ email: user.email, fullName: user.name })
+        if (!existingCustomer)
+          await createCustomer({ email: user.email, fullName: user.name })
 
         return true
       } catch {
@@ -29,7 +32,7 @@ const authConfig = {
       session.user.customerId = customer.id
 
       return session
-    }
+    },
   },
   pages: {
     signIn: "/login",
