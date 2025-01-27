@@ -1,5 +1,7 @@
+import LoginMessage from "@/app/_components/LoginMessage"
 import OrderForm from "@/app/_components/OrderForm"
 import TextExpander from "@/app/_components/TextExpander"
+import { auth } from "@/app/_lib/auth"
 import {
   getProduct,
   getSettings,
@@ -27,6 +29,8 @@ export default async function Page({ params }) {
   const { maxPcsToOrder } = await getSettings()
 
   const { id, name, code, regularPrice, discount, image, description } = product
+
+  const session = await auth()
 
   return (
     <div className="max-w-6xl mx-auto mt-8">
@@ -76,7 +80,11 @@ export default async function Page({ params }) {
               </span>
             </li>
             <li>
-              <OrderForm maxPcsToOrder={maxPcsToOrder} product={product} />
+              {session?.user ? (
+                <OrderForm maxPcsToOrder={maxPcsToOrder} product={product} />
+              ) : (
+                <LoginMessage />
+              )}
             </li>
           </ul>
         </div>
